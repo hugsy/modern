@@ -6,4 +6,5 @@
 | `find` | [`fd`](https://github.com/sharkdp/fd) | ✔ |
 | `grep` | [`ripgrep`](https://github.com/BurntSushi/ripgrep) | ✔ |
 | `nano` | [`micro`](https://github.com/zyedidia/micro) | ✔ |
-
+| `top`/`htop` | [`bottom`](https://github.com/ClementTsang/bottom)  | ✔ |
+| ~`objdump` | [`bingrep`](https://github.com/m4b/bingrep) | ✔ |
