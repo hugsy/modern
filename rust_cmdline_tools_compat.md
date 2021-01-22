@@ -11,3 +11,4 @@
 | `top`/`htop` | [`bottom`](https://github.com/ClementTsang/bottom)  | ✔ |
 | ~`objdump` | [`bingrep`](https://github.com/m4b/bingrep) | ✔ |
 | `dig` | [`dog`](https://github.com/ogham/dog) | ✔ |
+| `hexdump` | [`hex`](https://github.com/sitkevij/hex)| ✔ |
