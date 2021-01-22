@@ -5,4 +5,5 @@
 | `cloc` | [`tokei`](https://github.com/XAMPPRocky/tokei) | ✔ |
 | `find` | [`fd`](https://github.com/sharkdp/fd) | ✔ |
 | `grep` | [`ripgrep`](https://github.com/BurntSushi/ripgrep) | ✔ |
+| `nano` | [`micro`](https://github.com/zyedidia/micro) | ✔ |
 
