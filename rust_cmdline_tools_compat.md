@@ -12,3 +12,4 @@
 | ~`objdump` | [`bingrep`](https://github.com/m4b/bingrep) | ✔ |
 | `dig` | [`dog`](https://github.com/ogham/dog) | ✔ |
 | `hexdump` | [`hex`](https://github.com/sitkevij/hex)| ✔ |
+| `git` | [`gitoxide (gix)`](https://github.com/Byron/gitoxide)| ✔ |
