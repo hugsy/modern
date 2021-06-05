@@ -5,7 +5,7 @@
 | `cloc` | [`tokei`](https://github.com/XAMPPRocky/tokei) | ✔ |
 | `find` | [`fd`](https://github.com/sharkdp/fd) | ✔ |
 | `grep` | [`ripgrep`](https://github.com/BurntSushi/ripgrep) | ✔ |
-| `nano` | [`micro`](https://github.com/zyedidia/micro) (GoLang) | ✔ |
+| `vim` | [`helix`](https://github.com/helix-editor/helix) | ✔ |
 | `nano` | [`lino`](https://github.com/ahmednooor/lino/) | ✔ |
 | `nano` | [`ox`](https://lib.rs/gh/curlpipe/ox/ox) | ❌ |
 | `top`/`htop` | [`bottom`](https://github.com/ClementTsang/bottom)  | ✔ |
