@@ -13,3 +13,4 @@
 | `dig` | [`dog`](https://github.com/ogham/dog) | ✔ | ✔ |
 | `hexdump` | [`hex`](https://github.com/sitkevij/hex)| ✔ | osx only |
 | `git` | [`gitoxide (gix)`](https://github.com/Byron/gitoxide)| ✔ | ✔ |
+| `curl` | [`xh`](https://github.com/ducaale/xh/)| ✔ | ✔ |
