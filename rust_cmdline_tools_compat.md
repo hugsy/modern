@@ -7,7 +7,7 @@
 | `grep` | [`ripgrep`](https://github.com/BurntSushi/ripgrep) | ✔ | ✔ |
 | `vim` | [`helix`](https://github.com/helix-editor/helix) | ✔ | ✔ |
 | `nano` | [`lino`](https://github.com/ahmednooor/lino/) | ✔ | ✔ |
-| `nano` | [`ox`](https://github.com/curlpipe/ox) | ❌ | ![Linux only](https://www.ximea.com/support/attachments/download/1160/linux_logo_small.png) |
+| `nano` | [`ox`](https://github.com/curlpipe/ox) | ❌ | <img title="Linux only" src=https://www.ximea.com/support/attachments/download/1160/linux_logo_small.png width=70px height=70px> |
 | `top`/`htop` | [`bottom`](https://github.com/ClementTsang/bottom)  | ✔ | ✔ |
 | ~`objdump` | [`bingrep`](https://github.com/m4b/bingrep) | ✔ | ✔ |
 | `dig` | [`dog`](https://github.com/ogham/dog) | ✔ | ✔ |
