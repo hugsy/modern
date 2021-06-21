@@ -13,5 +13,6 @@
 | `dig` | [`dog`](https://github.com/ogham/dog) | ✔ | ✔ |
 | `hexdump` | [`hex`](https://github.com/sitkevij/hex)| ✔ | <img title="OSX only" src=https://www.alessioatzeni.com/mac-osx-lion-css3/res/img/apple-logo-login.png height=23px> |
 | `git` | [`gitoxide (gix)`](https://github.com/Byron/gitoxide)| ✔ | ✔ |
+| `sed` | [`sd`](https://github.com/chmln/sd/) | ❌ | <img title="Linux only" src=https://www.ximea.com/support/attachments/download/1160/linux_logo_small.png height=23px> <img title="OSX only" src=https://www.alessioatzeni.com/mac-osx-lion-css3/res/img/apple-logo-login.png height=23px> |
 | `curl` | [`xh`](https://github.com/ducaale/xh/)| ✔ | ✔ |
 | `ps` | [`procs`](https://github.com/dalance/procs/)| ✔ | ✔ |
