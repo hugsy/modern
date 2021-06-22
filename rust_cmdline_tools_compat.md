@@ -1,6 +1,7 @@
 | Unix tool | Rust version | Windows compatible? | Has prebuild? |
 |:---:|:---:|:---:|:---:|
 | `cat` | [`bat`](https://github.com/sharkdp/bat/) | ✔ | ✔ |
+| `cd` | [`zoxide`](https://github.com/ajeetdsouza/zoxide/) | ✔ | ✔ |
 | `cloc` | [`tokei`](https://github.com/XAMPPRocky/tokei/) | ✔ | ✔ |
 | `curl` | [`xh`](https://github.com/ducaale/xh) | ✔ | ✔ |
 | `curl` | [`xh`](https://github.com/ducaale/xh/)| ✔ | ✔ |
