@@ -22,3 +22,4 @@
 | `tree` | [`broot`](https://github.com/Canop/broot/) | ✔ | ✔ |
 | `objdump` | [`bingrep`](https://github.com/m4b/bingrep/) | ✔ | ✔ |
 | `vim` | [`helix`](https://github.com/helix-editor//helix) | ✔ | ✔ |
+| `wc` | [`cw`](https://github.com/Freaky/cw) | ✔ | ❌ |
