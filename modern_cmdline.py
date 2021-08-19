@@ -21,8 +21,8 @@ def create_table():
         return """<img title="Windows only" src="https://blog.thesysadmins.co.uk/wp-content/uploads/Windows-8-logo-100x100.jpg"height=23px> """
 
     with open("./rust_cmdline_tools_compat.md", "w") as f:
-        f.write("| Unix tool | Rust version | Windows compatible? | Has prebuild? |")
-        f.write("|:---:|:---:|:---:|:---:|")
+        f.write("| Unix tool | Rust version | Windows compatible? | Has prebuild? |\n")
+        f.write("|:---:|:---:|:---:|:---:|\n")
 
         for tool in js:
             print(tool)
@@ -33,7 +33,7 @@ def create_table():
                 if os == "lin": prebuild_list.append(lin_logo())
                 if os == "mac": prebuild_list.append(mac_logo())
 
-            f.write(f'| `{tool["unix-tool"]}` | [`{tool["modern-tool"]}`]({tool["url"]}) | {is_windows_compatible} | {" ".join(prebuild_list)} |')
+            f.write(f'| `{tool["unix-tool"]}` | [`{tool["modern-tool"]}`]({tool["url"]}) | {is_windows_compatible} | {" ".join(prebuild_list)} |\n')
 
 
 if sys.argv[1] == "--generate":
