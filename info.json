@@ -237,6 +237,10 @@
         "modern-tool": "cw",
         "url": "https://github.com/Freaky/cw",
         "windows-compatible": true,
-        "prebuild": []
+        "prebuild": [
+            "win",
+            "lin",
+            "mac"
+        ]
     }
 ]
