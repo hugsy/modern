@@ -38,7 +38,7 @@ def create_table():
                 if os == "lin": prebuild_list.append(lin_logo())
                 if os == "mac": prebuild_list.append(mac())
 
-            f.write(f'| `{tool["unix-tool"]}` | [`{tool["modern-tool"]}`]({tool["url"]}) | {is_windows_compatible} | {} |')
+            f.write(f'| `{tool["unix-tool"]}` | [`{tool["modern-tool"]}`]({tool["url"]}) | {is_windows_compatible} | {" ".join(prebuild_list)} |')
 
 
 if sys.argv[1] == "--generate":
