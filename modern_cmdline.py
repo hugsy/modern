@@ -11,12 +11,6 @@ def create_table():
 
     js = h.json()
 
-    def tick():
-        return "✔"
-
-    def cross():
-        return "❌"
-
     def lin_logo():
         return """<img title="Linux only" src=https://www.ximea.com/support/attachments/download/1160/linux_logo_small.png height=23px>"""
 
@@ -31,7 +25,7 @@ def create_table():
         f.write("|:---:|:---:|:---:|:---:|")
 
         for tool in js:
-            is_windows_compatible = tick() if tool["windows-compatible"] else cross()
+            is_windows_compatible = "✔" if tool["windows-compatible"] else "❌"
             prebuild_list = []
             for os in tool["prebuild"]:
                 if os == "win": prebuild_list.append(win_logo())
