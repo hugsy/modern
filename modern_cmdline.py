@@ -30,7 +30,7 @@ def create_table():
             for os in tool["prebuild"]:
                 if os == "win": prebuild_list.append(win_logo())
                 if os == "lin": prebuild_list.append(lin_logo())
-                if os == "mac": prebuild_list.append(mac())
+                if os == "mac": prebuild_list.append(mac_logo())
 
             f.write(f'| `{tool["unix-tool"]}` | [`{tool["modern-tool"]}`]({tool["url"]}) | {is_windows_compatible} | {" ".join(prebuild_list)} |')
 
