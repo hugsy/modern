@@ -1,7 +1,7 @@
 import requests
 import sys, os
 
-URL = "https://gist.githubusercontent.com/hugsy/b950d6c98596c02cc129ead22dfb648c/raw/9e8942f52bf6ac03f27e300ae1e283ff58175a57/info.json"
+URL = "https://gist.githubusercontent.com/hugsy/b950d6c98596c02cc129ead22dfb648c/raw/487c78174b38a595c7e39a22a9a9a58e9690be77/info.json"
 
 def create_table():
     h = requests.get(URL)
