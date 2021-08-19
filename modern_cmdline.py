@@ -25,7 +25,6 @@ def create_table():
         f.write("|:---:|:---:|:---:|:---:|\n")
 
         for tool in js:
-            print(tool)
             is_windows_compatible = "✔" if tool["windows-compatible"] else "❌"
             prebuild_list = []
             for os in tool["prebuild"]:
