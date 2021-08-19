@@ -1,5 +1,5 @@
 import requests
-import sys
+import sys, os
 
 URL = "https://gist.githubusercontent.com/hugsy/b950d6c98596c02cc129ead22dfb648c/raw/9e8942f52bf6ac03f27e300ae1e283ff58175a57/info.json"
 
@@ -20,19 +20,19 @@ def create_table():
     def win_logo():
         return """<img title="Windows only" src="https://blog.thesysadmins.co.uk/wp-content/uploads/Windows-8-logo-100x100.jpg"height=23px> """
 
-    with open("./rust_cmdline_tools_compat.md", "w") as f:
-        f.write("| Unix tool | Rust version | Windows compatible? | Has prebuild? |\n")
-        f.write("|:---:|:---:|:---:|:---:|\n")
+    with open("./rust_cmdline_tools_compat.md", "w", encoding="utf-8") as f:
+        f.write(f"| Unix tool | Rust version | Windows compatible? | Has prebuild? |{os.linesep}")
+        f.write(f"|:---:|:---:|:---:|:---:|{os.linesep}")
 
         for tool in js:
             is_windows_compatible = "✔" if tool["windows-compatible"] else "❌"
             prebuild_list = []
-            for os in tool["prebuild"]:
-                if os == "win": prebuild_list.append(win_logo())
-                if os == "lin": prebuild_list.append(lin_logo())
-                if os == "mac": prebuild_list.append(mac_logo())
+            for o in tool["prebuild"]:
+                if o == "win": prebuild_list.append(win_logo())
+                if o == "lin": prebuild_list.append(lin_logo())
+                if o == "mac": prebuild_list.append(mac_logo())
 
-            f.write(f'| `{tool["unix-tool"]}` | [`{tool["modern-tool"]}`]({tool["url"]}) | {is_windows_compatible} | {" ".join(prebuild_list)} |\n')
+            f.write(f'| `{tool["unix-tool"]}` | [`{tool["modern-tool"]}`]({tool["url"]}) | {is_windows_compatible} | {" ".join(prebuild_list)} |{os.linesep}')
 
 
 if sys.argv[1] == "--generate":
