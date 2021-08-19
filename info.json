@@ -1,187 +1,242 @@
 [
-
-{
-"unix-tool":"cat",
-"modern-tool":"bat",
-"url":"https://github.com/sharkdp/bat",
-"windows-compatible": true,
-"prebuild": ["win", "lin", "mac"]
-},
-
-{
-"unix-tool":"cd",
-"modern-tool":"zoxide",
-"url":"https://github.com/ajeetdsouza/zoxide",
-"windows-compatible": true,
-"prebuild": ["win", "lin", "mac"]
-},
-
-{
-"unix-tool":"cloc",
-"modern-tool":"tokei",
-"url":"https://github.com/XAMPPRocky/tokei",
-"windows-compatible": true,
-"prebuild": ["win", "lin", "mac"]
-},
-
-{
-"unix-tool":"curl",
-"modern-tool":"xh",
-"url":"https://github.com/ducaale/xh",
-"windows-compatible": true,
-"prebuild": ["win", "lin", "mac"]
-},
-
-{
-"unix-tool":"diff",
-"modern-tool":"delta",
-"url":"https://github.com/dandavison/delta",
-"windows-compatible": true,
-"prebuild": ["win", "lin", "mac"]
-},
-
-{
-"unix-tool":"dig",
-"modern-tool":"dog",
-"url":"https://github.com/ogham/dog",
-"windows-compatible": true,
-"prebuild": ["win", "lin", "mac"]
-},
-
-{
-"unix-tool":"find",
-"modern-tool":"fd",
-"url":"https://github.com/sharkdp/fd",
-"windows-compatible": true,
-"prebuild": ["win", "lin", "mac"]
-},
-
-{
-"unix-tool":"git",
-"modern-tool":"gitoxide",
-"url":"https://github.com/Byron/gitoxide",
-"windows-compatible": true,
-"prebuild": ["win", "lin", "mac"]
-},
-
-{
-"unix-tool":"grep",
-"modern-tool":"ripgrep",
-"url":"https://github.com/BurntSushi/ripgrep",
-"windows-compatible": true,
-"prebuild": ["win", "lin", "mac"]
-},
-
-{
-"unix-tool":"hexdump",
-"modern-tool":"hex",
-"url":"https://github.com/sitkevij/hex",
-"windows-compatible":true,
-"prebuild": ["mac"]
-},
-
-{
-"unix-tool":"hexdump",
-"modern-tool":"hexyl",
-"url":"https://github.com/sharkdp/hexyl",
-"windows-compatible": true,
-"prebuild": ["win", "lin", "mac"]
-},
-
-{
-"unix-tool":"ls",
-"modern-tool":"exa",
-"url":"https://github.com/ogham/exa",
-"windows-compatible": false,
-"prebuild": ["win", "lin", "mac"]
-},
-
-{
-"unix-tool":"nano",
-"modern-tool":"lino",
-"url":"https://github.com/ahmednooor/lino",
-"windows-compatible": true,
-"prebuild": []
-},
-
-{
-"unix-tool":"nano",
-"modern-tool":"ox",
-"url":"https://github.com/curlpipe/ox",
-"windows-compatible": false,
-"prebuild": ["lin"]
-},
-
-{
-"unix-tool":"ps",
-"modern-tool":"procs",
-"url":"https://github.com/dalance/procs",
-"windows-compatible": true,
-"prebuild": ["win", "lin", "mac"]
-},
-
-{
-"unix-tool":"sed",
-"modern-tool":"sd",
-"url":"https://github.com/chmln/sd",
-"windows-compatible": false,
-"prebuild": ["lin", "mac"]
-},
-
-{
-"unix-tool":"spotify",
-"modern-tool":"psst",
-"url": "https://github.com/jpochyla/psst",
-"windows-compatible": true,
-"prebuild": ["win", "lin", "mac"]
-},
-
-{
-"unix-tool":"time",
-"modern-tool":"hyperfine",
-"url":"https://github.com/sharkdp/hyperfine",
-"windows-compatible":true,
-"prebuild": ["win", "lin", "mac"]
-},
-
-{
-"unix-tool":"top",
-"modern-tool":"bottom",
-"url":"https://github.com/ClementTsang/bottom",
-"windows-compatible":true,
-"prebuild": ["win", "lin", "mac"]
-},
-
-{
-"unix-tool":"tree",
-"modern-tool":"broot",
-"url":"https://github.com/Canop/broot",
-"windows-compatible": true,
-"prebuild": ["win", "lin", "mac"]
-},
-
-{
-"unix-tool":"objdump",
-"modern-tool":"bingrep",
-"url":"https://github.com/m4b/bingrep",
-"windows-compatible": true,
-"prebuild": ["win", "lin", "mac"]
-},
-
-{
-"unix-tool":"vim",
-"modern-tool":"helix",
-"url":"https://github.com/helix-editor",
-"windows-compatible": true,
-"prebuild": ["win", "lin", "mac"]
-},
-
-{
-"unix-tool":"wc",
-"modern-tool":"cw",
-"url":"https://github.com/Freaky/cw",
-"windows-compatible": true,
-"prebuild": []
-}
-
+    {
+        "unix-tool": "cat",
+        "modern-tool": "bat",
+        "url": "https://github.com/sharkdp/bat",
+        "windows-compatible": true,
+        "prebuild": [
+            "win",
+            "lin",
+            "mac"
+        ]
+    },
+    {
+        "unix-tool": "cd",
+        "modern-tool": "zoxide",
+        "url": "https://github.com/ajeetdsouza/zoxide",
+        "windows-compatible": true,
+        "prebuild": [
+            "win",
+            "lin",
+            "mac"
+        ]
+    },
+    {
+        "unix-tool": "cloc",
+        "modern-tool": "tokei",
+        "url": "https://github.com/XAMPPRocky/tokei",
+        "windows-compatible": true,
+        "prebuild": [
+            "win",
+            "lin",
+            "mac"
+        ]
+    },
+    {
+        "unix-tool": "curl",
+        "modern-tool": "xh",
+        "url": "https://github.com/ducaale/xh",
+        "windows-compatible": true,
+        "prebuild": [
+            "win",
+            "lin",
+            "mac"
+        ]
+    },
+    {
+        "unix-tool": "diff",
+        "modern-tool": "delta",
+        "url": "https://github.com/dandavison/delta",
+        "windows-compatible": true,
+        "prebuild": [
+            "win",
+            "lin",
+            "mac"
+        ]
+    },
+    {
+        "unix-tool": "dig",
+        "modern-tool": "dog",
+        "url": "https://github.com/ogham/dog",
+        "windows-compatible": true,
+        "prebuild": [
+            "win",
+            "lin",
+            "mac"
+        ]
+    },
+    {
+        "unix-tool": "find",
+        "modern-tool": "fd",
+        "url": "https://github.com/sharkdp/fd",
+        "windows-compatible": true,
+        "prebuild": [
+            "win",
+            "lin",
+            "mac"
+        ]
+    },
+    {
+        "unix-tool": "git",
+        "modern-tool": "gitoxide",
+        "url": "https://github.com/Byron/gitoxide",
+        "windows-compatible": true,
+        "prebuild": [
+            "win",
+            "lin",
+            "mac"
+        ]
+    },
+    {
+        "unix-tool": "grep",
+        "modern-tool": "ripgrep",
+        "url": "https://github.com/BurntSushi/ripgrep",
+        "windows-compatible": true,
+        "prebuild": [
+            "win",
+            "lin",
+            "mac"
+        ]
+    },
+    {
+        "unix-tool": "hexdump",
+        "modern-tool": "hex",
+        "url": "https://github.com/sitkevij/hex",
+        "windows-compatible": true,
+        "prebuild": [
+            "mac"
+        ]
+    },
+    {
+        "unix-tool": "hexdump",
+        "modern-tool": "hexyl",
+        "url": "https://github.com/sharkdp/hexyl",
+        "windows-compatible": true,
+        "prebuild": [
+            "win",
+            "lin",
+            "mac"
+        ]
+    },
+    {
+        "unix-tool": "ls",
+        "modern-tool": "exa",
+        "url": "https://github.com/ogham/exa",
+        "windows-compatible": false,
+        "prebuild": [
+            "win",
+            "lin",
+            "mac"
+        ]
+    },
+    {
+        "unix-tool": "nano",
+        "modern-tool": "lino",
+        "url": "https://github.com/ahmednooor/lino",
+        "windows-compatible": true,
+        "prebuild": []
+    },
+    {
+        "unix-tool": "nano",
+        "modern-tool": "ox",
+        "url": "https://github.com/curlpipe/ox",
+        "windows-compatible": false,
+        "prebuild": [
+            "lin"
+        ]
+    },
+    {
+        "unix-tool": "ps",
+        "modern-tool": "procs",
+        "url": "https://github.com/dalance/procs",
+        "windows-compatible": true,
+        "prebuild": [
+            "win",
+            "lin",
+            "mac"
+        ]
+    },
+    {
+        "unix-tool": "sed",
+        "modern-tool": "sd",
+        "url": "https://github.com/chmln/sd",
+        "windows-compatible": false,
+        "prebuild": [
+            "lin",
+            "mac"
+        ]
+    },
+    {
+        "unix-tool": "spotify",
+        "modern-tool": "psst",
+        "url": "https://github.com/jpochyla/psst",
+        "windows-compatible": true,
+        "prebuild": [
+            "win",
+            "lin",
+            "mac"
+        ]
+    },
+    {
+        "unix-tool": "time",
+        "modern-tool": "hyperfine",
+        "url": "https://github.com/sharkdp/hyperfine",
+        "windows-compatible": true,
+        "prebuild": [
+            "win",
+            "lin",
+            "mac"
+        ]
+    },
+    {
+        "unix-tool": "top",
+        "modern-tool": "bottom",
+        "url": "https://github.com/ClementTsang/bottom",
+        "windows-compatible": true,
+        "prebuild": [
+            "win",
+            "lin",
+            "mac"
+        ]
+    },
+    {
+        "unix-tool": "tree",
+        "modern-tool": "broot",
+        "url": "https://github.com/Canop/broot",
+        "windows-compatible": true,
+        "prebuild": [
+            "win",
+            "lin",
+            "mac"
+        ]
+    },
+    {
+        "unix-tool": "objdump",
+        "modern-tool": "bingrep",
+        "url": "https://github.com/m4b/bingrep",
+        "windows-compatible": true,
+        "prebuild": [
+            "win",
+            "lin",
+            "mac"
+        ]
+    },
+    {
+        "unix-tool": "vim",
+        "modern-tool": "helix",
+        "url": "https://github.com/helix-editor",
+        "windows-compatible": true,
+        "prebuild": [
+            "win",
+            "lin",
+            "mac"
+        ]
+    },
+    {
+        "unix-tool": "wc",
+        "modern-tool": "cw",
+        "url": "https://github.com/Freaky/cw",
+        "windows-compatible": true,
+        "prebuild": []
+    }
 ]
