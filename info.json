@@ -224,7 +224,7 @@
     {
         "unix-tool": "vim",
         "modern-tool": "helix",
-        "url": "https://github.com/helix-editor",
+        "url": "https://github.com/helix-editor/helix",
         "windows-compatible": true,
         "prebuild": [
             "win",
@@ -232,6 +232,19 @@
             "mac"
         ]
     },
+
+    {
+        "unix-tool": "vim",
+        "modern-tool": "neovide",
+        "url": "https://github.com/neovide/neovide",
+        "windows-compatible": true,
+        "prebuild": [
+            "win",
+            "lin",
+            "mac"
+        ]
+    },
+
     {
         "unix-tool": "wc",
         "modern-tool": "cw",
