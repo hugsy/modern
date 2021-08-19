@@ -18,7 +18,7 @@ def create_table():
         return """<img title="OSX only" src=https://www.alessioatzeni.com/mac-osx-lion-css3/res/img/apple-logo-login.png height=23px>"""
 
     def win_logo():
-        return """<img title="Windows only" src="https://blog.thesysadmins.co.uk/wp-content/uploads/Windows-8-logo-100x100.jpg"height=23px> """
+        return """<img title="Windows only" src="https://blog.thesysadmins.co.uk/wp-content/uploads/Windows-8-logo-100x100.jpg" height=23px> """
 
     with open("./rust_cmdline_tools_compat.md", "w", encoding="utf-8") as f:
         f.write(f"| Unix tool | Rust version | Windows compatible? | Has prebuild? |{os.linesep}")
