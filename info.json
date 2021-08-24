@@ -255,5 +255,30 @@
             "lin",
             "mac"
         ]
+    },
+
+    {
+        "unix-tool": "ls",
+        "modern-tool": "lsd",
+        "url": "https://github.com/Peltoche/lsd",
+        "windows-compatible": true,
+        "prebuild": [
+            "win",
+            "lin",
+            "mac"
+        ]
+    },
+
+    {
+        "unix-tool": "sed",
+        "modern-tool": "sd",
+        "url": "https://github.com/chmln/sd",
+        "windows-compatible": true,
+        "prebuild": [
+            "lin",
+            "mac"
+        ]
     }
+
+
 ]
