@@ -10,6 +10,7 @@
             "mac"
         ]
     },
+
     {
         "unix-tool": "cd",
         "modern-tool": "zoxide",
@@ -21,6 +22,7 @@
             "mac"
         ]
     },
+
     {
         "unix-tool": "cloc",
         "modern-tool": "tokei",
@@ -32,6 +34,7 @@
             "mac"
         ]
     },
+
     {
         "unix-tool": "curl",
         "modern-tool": "xh",
@@ -43,6 +46,7 @@
             "mac"
         ]
     },
+
     {
         "unix-tool": "diff",
         "modern-tool": "delta",
@@ -54,6 +58,7 @@
             "mac"
         ]
     },
+
     {
         "unix-tool": "dig",
         "modern-tool": "dog",
@@ -65,6 +70,7 @@
             "mac"
         ]
     },
+
     {
         "unix-tool": "find",
         "modern-tool": "fd",
@@ -76,6 +82,7 @@
             "mac"
         ]
     },
+
     {
         "unix-tool": "git",
         "modern-tool": "gitoxide",
@@ -87,9 +94,11 @@
             "mac"
         ]
     },
+
     {
         "unix-tool": "grep",
         "modern-tool": "ripgrep",
+        "modern-tool-bin": "rg",
         "url": "https://github.com/BurntSushi/ripgrep",
         "windows-compatible": true,
         "prebuild": [
@@ -98,6 +107,7 @@
             "mac"
         ]
     },
+
     {
         "unix-tool": "hexdump",
         "modern-tool": "hex",
@@ -107,6 +117,7 @@
             "mac"
         ]
     },
+
     {
         "unix-tool": "hexdump",
         "modern-tool": "hexyl",
@@ -118,6 +129,16 @@
             "mac"
         ]
     },
+
+    {
+        "unix-tool": "jq",
+        "modern-tool": "jql",
+        "url": "https://github.com/yamafaktory/jql",
+        "windows-compatible": true,
+        "prebuild": [
+        ]
+    },
+
     {
         "unix-tool": "ls",
         "modern-tool": "exa",
@@ -148,6 +169,7 @@
         "windows-compatible": true,
         "prebuild": []
     },
+
     {
         "unix-tool": "nano",
         "modern-tool": "ox",
@@ -157,6 +179,7 @@
             "lin"
         ]
     },
+
     {
         "unix-tool": "ps",
         "modern-tool": "procs",
@@ -168,6 +191,7 @@
             "mac"
         ]
     },
+
     {
         "unix-tool": "sed",
         "modern-tool": "sd",
@@ -178,6 +202,7 @@
             "mac"
         ]
     },
+
     {
         "unix-tool": "spotify",
         "modern-tool": "psst",
@@ -189,6 +214,7 @@
             "mac"
         ]
     },
+
     {
         "unix-tool": "time",
         "modern-tool": "hyperfine",
@@ -200,6 +226,7 @@
             "mac"
         ]
     },
+
     {
         "unix-tool": "top",
         "modern-tool": "bottom",
@@ -211,6 +238,7 @@
             "mac"
         ]
     },
+
     {
         "unix-tool": "tree",
         "modern-tool": "broot",
@@ -222,6 +250,7 @@
             "mac"
         ]
     },
+
     {
         "unix-tool": "objdump",
         "modern-tool": "bingrep",
@@ -233,6 +262,7 @@
             "mac"
         ]
     },
+
     {
         "unix-tool": "vim",
         "modern-tool": "helix",

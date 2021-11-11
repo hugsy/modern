@@ -1,0 +1,63 @@
+name: CI
+
+env:
+  REPO: hugsy/modern_cmdline
+  VERBOSE: "1"
+
+on: [push, pull_request]
+
+jobs:
+  ci_tests:
+    name: "CI for ${{ matrix.os }}/${{ matrix.platform }}"
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ['windows-latest', 'ubuntu-latest', 'macos-latest']
+        platform: ['x64']
+
+    runs-on: ${{ matrix.os }}
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Inject slug/short variables
+      uses: rlespinasse/github-slug-action@v3.x
+
+    - name: Initialize environment
+      run: |
+        python3 -m pip install --user --upgrade pip
+        python3 -m pip install --user --upgrade -r requirements.txt
+        mkdir ~/bin
+        cd ~
+
+    - name: Execute tests
+      run: |
+        python3 modern.py -v --search-unix ls
+        python3 modern.py -v --search-rust exa
+        python3 modern.py -v --switch grep --dry-run
+        python3 modern.py -v --switch grep
+        python3 modern.py -v --switch hexdump
+        python3 modern.py -v --switch bat
+        python3 modern.py -v --switch-all --dry-run
+        python3 modern.py -v --switch-all
+
+    - name: Test commands
+      if: matrix.os == 'windows-latest'
+      run: |
+        cp $profile ~/bin/
+        hexdump c:\windows\system32\ntdll.dll
+        cat c:\windows\win.ini
+
+    - name: Test commands
+      if: matrix.os != 'windows-latest'
+      run: |
+        cp ~/.alias ~/bin/
+        hexdump /bin/ls
+        cat /etc/passwd
+
+    - name: Publish artifact
+      id: publish_artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: modern_cmdline_${{ env.GITHUB_REF_SLUG }}_${{ matrix.os }}_${{ matrix.platform }}_${{ env.GITHUB_SHA_SHORT }}
+        path: ~/bin
