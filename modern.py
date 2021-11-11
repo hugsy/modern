@@ -155,16 +155,15 @@ def download_latest_release(tool: dict) -> pathlib.Path:
 
     ## if archive, extract it
     logger.debug(f"Checking '{fname}' for archive formats...")
-    if asset["content_type"] == "application/zip" \
-        or asset["content_type"] == "application/x-zip-compressed" \
-        or magic.from_file(str(fname.absolute()), mime=True) == "application/zip":
-            extract_dir = (tmpdir / "extracted").absolute()
-            logger.debug(f"Extracting '{fname.absolute()}' to '{extract_dir}'")
-            with zipfile.ZipFile(fname.absolute(), 'r') as zfd:
-                zfd.extractall(str(extract_dir))
+    if magic.from_file(str(fname.absolute()), mime=True) == "application/zip":
+        extract_dir = (tmpdir / "extracted").absolute()
+        logger.debug(f"Extracting '{fname.absolute()}' to '{extract_dir}'")
+        with zipfile.ZipFile(fname.absolute(), 'r') as zfd:
+            zfd.extractall(str(extract_dir))
 
     # check if binary has expected mime type for the current OS (PE, ELF, Mach-O)
     file_pattern = tool.get('modern-tool-bin', None) or tool.get('modern-tool')
+    file_pattern += "*"
     if __os == "windows":
         file_pattern += ".exe"
 
