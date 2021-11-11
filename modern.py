@@ -267,8 +267,8 @@ if __name__ == "__main__":
     install_group = parser.add_argument_group("install table")
     install_group.add_argument("-u", "--search-unix", help="Search for a unix tool", type=str, metavar="NAME")
     install_group.add_argument("-r", "--search-rust", help="Search for a rust tool", type=str, metavar="NAME")
-    install_group.add_argument("-s", "--switch", help="Download prebuild and install a legacy unix tool with a rust tool", type=str, metavar="RUST_TOOL_NAME")
-    install_group.add_argument("-S", "--switch-all", help="Download prebuild and install all legacy unix tool with rust tools", action="store_true")
+    install_group.add_argument("-i", "--install", help="Download prebuild and install a legacy unix tool with a rust tool", type=str, metavar="RUST_TOOL_NAME")
+    install_group.add_argument("-I", "--install-all", help="Download prebuild and install all legacy unix tool with rust tools", action="store_true")
     install_group.add_argument("-c", "--compile", help="Download, compile and install a legacy unix tool with a rust tool", type=str, metavar="RUST_TOOL_NAME")
     install_group.add_argument("-C", "--compile-all", help="Download, compile and install all legacy unix tool with rust tools", action="store_true")
     install_group.add_argument("--dry-run", help="If true, do not install the downloaded/compiled file(s)", action="store_true")
@@ -304,8 +304,8 @@ if __name__ == "__main__":
         pprint.pprint(res)
         exit(0)
 
-    if args.switch:
-        res = lookup_rust_tool_by_name(args.switch)
+    if args.install:
+        res = lookup_rust_tool_by_name(args.install)
         if len(res) != 1:
             logger.warning("Found multiple matches, cannot proceed")
             exit(1)
@@ -313,7 +313,7 @@ if __name__ == "__main__":
         tool = res[0]
         exit(install(tool, args.dry_run))
 
-    if args.switch_all:
+    if args.install_all:
         logger.debug(f"Collecting tool data...")
         js = collect_json_data()
         logger.info(f"Collected {len(js)} tools...")
