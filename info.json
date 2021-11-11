@@ -89,9 +89,6 @@
         "url": "https://github.com/Byron/gitoxide",
         "windows-compatible": true,
         "prebuild": [
-            "win",
-            "lin",
-            "mac"
         ]
     },
 
@@ -209,9 +206,6 @@
         "url": "https://github.com/jpochyla/psst",
         "windows-compatible": true,
         "prebuild": [
-            "win",
-            "lin",
-            "mac"
         ]
     },
 

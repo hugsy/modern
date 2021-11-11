@@ -43,6 +43,10 @@ class UnsupportedOperatingSystemException(Exception):
     pass
 
 
+class UnsupportedPlatformException(Exception):
+    pass
+
+
 def download_json_data(url: str) -> list[dict]:
     h : requests.Response = requests.get(url)
     if h.status_code != requests.codes.ok:
@@ -112,10 +116,21 @@ def download_latest_release(tool: dict) -> pathlib.Path:
     __arch = platform.architecture()[0]
     possible_oses = []
     if __os == "windows":
-        possible_oses = ("windows", "msvc")
+        possible_oses = ("windows", "msvc", "win")
+    elif __os == "linux":
+        possible_oses = ("linux", "lin", "lnx")
+    elif __os == "mac":
+        possible_oses = ("mac", "osx", "darwin")
+    else:
+        raise UnsupportedOperatingSystemException(f"Unsupported operating system: {__os}")
+
     possible_arches = []
     if __arch == "64bit":
         possible_arches = ("amd64", "x86_64")
+    elif __arch == "32bit":
+        possible_arches = ("x86", "i686")
+    else:
+        raise UnsupportedPlatformException(f"Unsupported architecture: {__arch}")
 
     if (__os == "windows" and "win" not in tool["prebuild"]) \
         or (__os == "linux" and "lin" not in tool["prebuild"]) \
@@ -137,9 +152,16 @@ def download_latest_release(tool: dict) -> pathlib.Path:
             for a in possible_arches:
                 logger.debug(f"trying {a}/{o} for {asset['name']}")
                 if o in asset["name"].lower() and a in asset["name"].lower():
-                    match = asset
-                    logger.debug(f"match found: '{match['name'].lower()}'")
-                    break
+                    if o == "win":
+                        if "darwin" not in asset["name"].lower(): # hack
+                            match = asset
+                            logger.debug(f"match found: '{match['name'].lower()}'")
+                            break
+                    else:
+                        match = asset
+                        logger.debug(f"match found: '{match['name'].lower()}'")
+                        break
+
             if match: break
         if match: break
 
@@ -304,9 +326,13 @@ if __name__ == "__main__":
                 continue
 
             tool = res[0]
-            if install(tool, args.dry_run) != 0:
-                logger.error(f"Error installing tool '{tool}'")
-                retcode += 1
+
+            try:
+                if install(tool, args.dry_run) != 0:
+                    logger.error(f"Error installing tool '{tool}'")
+                    retcode += 1
+            except MissingPrebuildException as e:
+                logger.warning(f"Missing prebuild for '{tool}'")
 
         logger.debug(f"Done, exiting with code {retcode}")
         exit(retcode)
