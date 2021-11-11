@@ -15,10 +15,16 @@ jobs:
       matrix:
         os: ['windows-latest', 'ubuntu-latest', 'macos-latest']
         platform: ['x64']
+        python-version: ['3.9', '3.10']
 
     runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v2
+
+    - uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+        architecture: ${{ matrix.platform }}
 
     - name: Inject slug/short variables
       uses: rlespinasse/github-slug-action@v3.x

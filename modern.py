@@ -7,7 +7,6 @@ It also allows to create a markdown table with the tool names, along with their 
 compatibility and prebuild status.
 """
 import argparse
-import glob
 import json
 import logging
 import os
