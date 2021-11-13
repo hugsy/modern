@@ -5,6 +5,10 @@ to your shell startup file (bashrc, zshrc, Microsoft.PowerShell_profile.ps1, etc
 
 It also allows to create a markdown table with the tool names, along with their Windows
 compatibility and prebuild status.
+
+TODO:
+ - progress bar
+ - use rich
 """
 import argparse
 import json
@@ -29,6 +33,7 @@ GIST_ROOT_URL       = "https://gist.githubusercontent.com/hugsy/b950d6c98596c02c
 GIST_URL            = f"{GIST_ROOT_URL}/raw/487c78174b38a595c7e39a22a9a9a58e9690be77/info.json"
 GITHUB_API          = "https://api.github.com"
 DEBUG               = False
+HOME                = pathlib.Path( os.path.expanduser("~") )
 
 logger = logging.getLogger( __file__ )
 logging_handler = logging.StreamHandler()
@@ -204,12 +209,11 @@ def download_latest_release(tool: dict) -> pathlib.Path:
 def install(tool: dict, is_dry_run: bool = False) -> int:
     is_windows = platform.system() == "Windows"
     # 0. check if we have a writable directory
-    home = pathlib.Path( os.path.expanduser("~") )
-    writable_directory_candidates = [home / "bin",]
+    writable_directory_candidates = [HOME / "bin",]
     if is_windows:
-        writable_directory_candidates += [home / "AppData" / "Local" / "bin",]
+        writable_directory_candidates += [HOME / "AppData" / "Local" / "bin",]
     else:
-        writable_directory_candidates += [home / ".local" / "bin",]
+        writable_directory_candidates += [HOME / ".local" / "bin",]
 
     output_directory = None
     for candidate in writable_directory_candidates:
@@ -237,11 +241,11 @@ def install(tool: dict, is_dry_run: bool = False) -> int:
 
     # 3. print the aliasing command for the tool for the current OS
     if is_windows:
-        alias_file = home / "PowershellAliases.ps1"
+        alias_file = HOME / "PowershellAliases.ps1"
         install_path = output_directory.absolute() / (tool_name+".exe")
         line_to_add = f"New-Alias -Name {tool['unix-tool']} -Value '{install_path}' -Option ReadOnly # added by {DEFAULT_SCRIPT_NAME.name}"
     else:
-        alias_file = home / ".aliases"
+        alias_file = HOME / ".aliases"
         install_path = output_directory.absolute() / tool_name
         line_to_add = f"alias {tool['unix-tool']}='{install_path}' # added by {DEFAULT_SCRIPT_NAME.name}"
 

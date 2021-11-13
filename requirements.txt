@@ -1,2 +1,4 @@
 requests
-python-magic-bin
+python-magic-bin ; sys_platform == 'windows'
+python-magic ; sys_platform == 'linux'
+python-magic ; sys_platform == 'darwin'
