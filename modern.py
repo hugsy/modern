@@ -237,7 +237,7 @@ def install(tool: dict, is_dry_run: bool = False) -> int:
 
     # 3. print the aliasing command for the tool for the current OS
     if is_windows:
-        alias_file = home / "Documents" / "WindowsPowerShell" / "Microsoft.PowerShell_profile.ps1"
+        alias_file = home / "PowershellAliases.ps1"
         install_path = output_directory.absolute() / (tool_name+".exe")
         line_to_add = f"New-Alias -Name {tool['unix-tool']} -Value '{install_path}' -Option ReadOnly # added by {DEFAULT_SCRIPT_NAME.name}"
     else:
@@ -245,15 +245,14 @@ def install(tool: dict, is_dry_run: bool = False) -> int:
         install_path = output_directory.absolute() / tool_name
         line_to_add = f"alias {tool['unix-tool']}='{install_path}' # added by {DEFAULT_SCRIPT_NAME.name}"
 
-    if alias_file.is_file():
-        logger.debug(f"Adding `{line_to_add}` in '{alias_file.absolute()}'")
-        if line_to_add not in [line.strip() for line in open(str(alias_file.absolute()), "r").readlines()]:
-            if not is_dry_run:
-                with open(str(alias_file.absolute()), "a") as f:
-                    f.write(f"{line_to_add} {os.linesep}")
-            logger.info(f"Alias '{tool['unix-tool']}' -> '{tool_name}' added to `{alias_file}`")
-        else:
-            logger.info(f"Alias for '{tool['unix-tool']}' already in `{alias_file}`")
+    logger.debug(f"Adding `{line_to_add}` in '{alias_file.absolute()}'")
+    if line_to_add not in [line.strip() for line in open(str(alias_file.absolute()), "r").readlines()]:
+        if not is_dry_run:
+            with open(str(alias_file.absolute()), "a") as f:
+                f.write(f"{line_to_add} {os.linesep}")
+        logger.info(f"Alias '{tool['unix-tool']}' -> '{tool_name}' added to `{alias_file}`")
+    else:
+        logger.info(f"Alias for '{tool['unix-tool']}' already in `{alias_file}`")
     return 0
 
 
