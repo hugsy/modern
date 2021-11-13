@@ -124,7 +124,7 @@ def download_latest_release(tool: dict) -> pathlib.Path:
         possible_oses = ("windows", "msvc", "win")
     elif __os == "linux":
         possible_oses = ("linux", "lin", "lnx")
-    elif __os == "mac":
+    elif __os == "darwin":
         possible_oses = ("mac", "osx", "darwin")
     else:
         raise UnsupportedOperatingSystemException(f"Unsupported operating system: {__os}")
