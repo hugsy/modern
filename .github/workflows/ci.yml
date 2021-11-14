@@ -51,7 +51,7 @@ jobs:
       if: matrix.os == 'windows-latest'
       run: |
         cp -Force ~/PowershellAliases.ps1 ~/bin/
-        try{ . ~/PowershellAliases.ps1 } catch {}
+        . ~/PowershellAliases.ps1
         Get-Alias
         ls ~/bin
         hexdump c:\windows\system32\ntdll.dll
