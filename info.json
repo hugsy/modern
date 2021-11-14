@@ -224,6 +224,7 @@
     {
         "unix-tool": "top",
         "modern-tool": "bottom",
+        "modern-tool-bin": "btm",
         "url": "https://github.com/ClementTsang/bottom",
         "windows-compatible": true,
         "prebuild": [
