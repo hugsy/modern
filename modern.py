@@ -143,12 +143,15 @@ def download_latest_release(tool: dict) -> pathlib.Path:
     if (__os == "windows" and "win" not in tool["prebuild"]) \
         or (__os == "linux" and "lin" not in tool["prebuild"]) \
         or (__os == "macos" and "mac" not in tool["prebuild"]):
-            raise MissingPrebuildException(f"Tool {tool['unix-tool']} is not available for {__os}")
+            raise MissingPrebuildException(f"Tool '{tool['unix-tool']}' is not available for {__os}")
 
     gh_tool_author, gh_tool_name = tool["url"].replace("https://github.com/", "").split("/")
 
     # download the data
     release_js = download_json_data(f"{GITHUB_API_URL}/repos/{gh_tool_author}/{gh_tool_name}/releases")
+
+    if len(release_js) < 1:
+        raise MissingPrebuildException(f"Missing release for '{tool['unix-tool']}' on {__os} {__arch} ")
 
     # find the right asset in the latest release
     latest_release = release_js[0]
@@ -209,7 +212,6 @@ def download_latest_release(tool: dict) -> pathlib.Path:
     for curdir, _, files in os.walk(tmpdir.absolute()):
         for fname in files:
             fpath = pathlib.Path(curdir) / fname
-            print(fpath)
             if fpath.exists() and fpath.is_file() and fpath.match(file_pattern):
                 logger.info(f"Found {fpath}")
                 return fpath
