@@ -29,12 +29,22 @@ jobs:
     - name: Inject slug/short variables
       uses: rlespinasse/github-slug-action@v3.x
 
-    - name: Initialize environment
+    - name: Initialize environment - Common
       run: |
         python3 -m pip install --user --upgrade pip
         python3 -m pip install --user --upgrade -r requirements.txt
         mkdir ~/bin
         cd ~
+
+    - name: Initialize environment - Linux
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        sudo apt-get install libmagic1
+
+    - name: Initialize environment - MacOS
+      if: matrix.os == 'macos-latest'
+      run: |
+        brew install libmagic
 
     - name: Execute generic tests
       run: |
