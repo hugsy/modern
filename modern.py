@@ -243,7 +243,7 @@ def install(tool: dict, is_dry_run: bool = False) -> int:
     if is_windows:
         alias_file = HOME / "PowershellAliases.ps1"
         install_path = output_directory.absolute() / (tool_name+".exe")
-        line_to_add = f"New-Alias -Force -Name {tool['unix-tool']} -Value '{install_path}' -Option ReadOnly # added by {DEFAULT_SCRIPT_NAME.name}"
+        line_to_add = f"New-Alias -Force -Name {tool['unix-tool']} -Value '{install_path}' -Option ReadOnly,AllScope # added by {DEFAULT_SCRIPT_NAME.name}"
     else:
         alias_file = HOME / ".aliases"
         install_path = output_directory.absolute() / tool_name
