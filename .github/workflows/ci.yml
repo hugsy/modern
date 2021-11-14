@@ -52,6 +52,11 @@ jobs:
         python3 modern.py -v --install exa
         python3 modern.py -v --install ox
 
+        - name: Execute macos tests
+      if: matrix.os == 'macos-latest'
+      run: |
+        python3 modern.py -v --install exa
+
     - name: Test commands - Windows
       if: matrix.os == 'windows-latest'
       run: |

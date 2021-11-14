@@ -209,6 +209,7 @@ def download_latest_release(tool: dict) -> pathlib.Path:
     for curdir, _, files in os.walk(tmpdir.absolute()):
         for fname in files:
             fpath = pathlib.Path(curdir) / fname
+            print(fpath)
             if fpath.exists() and fpath.is_file() and fpath.match(file_pattern):
                 logger.info(f"Found {fpath}")
                 return fpath
