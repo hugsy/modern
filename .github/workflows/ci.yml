@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: ['windows-latest', 'ubuntu-latest', 'macos-latest']
+        os: ['windows-latest'] # 'ubuntu-latest', 'macos-latest']
         platform: ['x64']
         python-version: ['3.9']
 
@@ -47,18 +47,15 @@ jobs:
         python3 modern.py -v --install-all --dry-run
         python3 modern.py -v --install-all
 
-    - name: Test commands
+    - name: Test commands - Windows
       if: matrix.os == 'windows-latest'
       run: |
         cp -Force ~/PowershellAliases.ps1 ~/bin/
-        cat ~/PowershellAliases.ps1
         . ~/PowershellAliases.ps1
-        Get-Alias
-        ls ~/bin
         hexdump c:\windows\system32\ntdll.dll
         cat c:\windows\win.ini
 
-    - name: Test commands
+    - name: Test commands - Linux/MacOS
       if: matrix.os != 'windows-latest'
       run: |
         cp -f ~/.aliases ~/bin/
@@ -70,5 +67,5 @@ jobs:
       id: publish_artifact
       uses: actions/upload-artifact@v2
       with:
-        name: modern_cmdline_${{ env.GITHUB_REF_SLUG }}_${{ matrix.os }}_${{ matrix.platform }}_${{ env.GITHUB_SHA_SHORT }}
+        name: modern_cmdline_${{ matrix.os }}_${{ matrix.platform }}_${{ env.GITHUB_SHA_SHORT }}
         path: ~/bin
