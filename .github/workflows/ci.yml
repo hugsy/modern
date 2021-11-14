@@ -15,7 +15,7 @@ jobs:
       matrix:
         os: ['windows-latest', 'ubuntu-latest', 'macos-latest']
         platform: ['x64']
-        python-version: ['3.9', '3.10']
+        python-version: ['3.9']
 
     runs-on: ${{ matrix.os }}
     steps:
@@ -52,6 +52,8 @@ jobs:
       run: |
         cp -Force ~/PowershellAliases.ps1 ~/bin/
         try{ . ~/PowershellAliases.ps1 } catch {}
+        Get-Alias
+        ls ~/bin
         hexdump c:\windows\system32\ntdll.dll
         cat c:\windows\win.ini
 
