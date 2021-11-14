@@ -283,9 +283,6 @@
         "url": "https://github.com/helix-editor/helix",
         "windows-compatible": true,
         "prebuild": [
-            "win",
-            "lin",
-            "mac"
         ]
     },
 
