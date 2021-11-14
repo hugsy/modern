@@ -256,7 +256,7 @@ def install(tool: dict, is_dry_run: bool = False) -> int:
             logger.info(f"Alias for '{tool['unix-tool']}' already in `{alias_file}`")
 
     logger.debug(f"Adding `{line_to_add}` in '{alias_file.absolute()}'")
-    if not is_dry_run and alias_already_exists:
+    if not is_dry_run and not alias_already_exists:
         with open(str(alias_file.absolute()), "a") as f:
             f.write(f"{line_to_add} {os.linesep}")
 
