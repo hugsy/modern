@@ -36,16 +36,23 @@ jobs:
         mkdir ~/bin
         cd ~
 
-    - name: Execute tests
+    - name: Execute generic tests
       run: |
         python3 modern.py -v --search-unix ls
-        python3 modern.py -v --search-rust exa
+        python3 modern.py -v --search-rust lsd
         python3 modern.py -v --install ripgrep --dry-run
         python3 modern.py -v --install ripgrep
         python3 modern.py -v --install hexyl
         python3 modern.py -v --install bat
         python3 modern.py -v --install-all --dry-run
         python3 modern.py -v --install-all
+
+    - name: Execute linux tests
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        python3 modern.py -v --search-rust exa
+        python3 modern.py -v --install exa
+        python3 modern.py -v --install ox
 
     - name: Test commands - Windows
       if: matrix.os == 'windows-latest'

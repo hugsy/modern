@@ -338,10 +338,10 @@ if __name__ == "__main__":
             # TODO: use threads
             res = lookup_rust_tool_by_name(entry["modern-tool"])
             if len(res) != 1:
-                logger.warning("Found multiple matches, cannot proceed")
-                continue
-
-            tool = res[0]
+                logger.warning("Found multiple matches, grabbing preferred...")
+                tool = filter(lambda x: x['preferred'] == True, res)[0]
+            else:
+                tool = res[0]
 
             try:
                 if install(tool, args.dry_run) != 0:
