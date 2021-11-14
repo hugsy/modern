@@ -249,9 +249,6 @@
         "url": "https://github.com/m4b/bingrep",
         "windows-compatible": true,
         "prebuild": [
-            "win",
-            "lin",
-            "mac"
         ]
     },
 
@@ -273,9 +270,6 @@
         "url": "https://github.com/neovide/neovide",
         "windows-compatible": true,
         "prebuild": [
-            "win",
-            "lin",
-            "mac"
         ]
     },
 
@@ -285,9 +279,6 @@
         "url": "https://github.com/Freaky/cw",
         "windows-compatible": true,
         "prebuild": [
-            "win",
-            "lin",
-            "mac"
         ]
     }
 ]
