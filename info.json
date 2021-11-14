@@ -255,6 +255,7 @@
     {
         "unix-tool": "vim",
         "modern-tool": "helix",
+        "modern-tool-bin": "hx",
         "url": "https://github.com/helix-editor/helix",
         "windows-compatible": true,
         "prebuild": [
