@@ -174,7 +174,7 @@ def download_latest_release(tool: dict) -> pathlib.Path:
         if match: break
 
     if not match:
-        raise MissingPrebuildException(f"No asset found for {__os} {__arch}")
+        raise MissingPrebuildException(f"No asset found for '{gh_tool_name}' on {__os} {__arch}")
 
     # download the asset in tempdir
     h = requests.get(match["browser_download_url"])
@@ -329,7 +329,17 @@ if __name__ == "__main__":
             exit(1)
 
         tool = res[0]
-        exit(install(tool, args.dry_run))
+
+        try:
+            retcode = install(tool, args.dry_run)
+        except MissingPrebuildException as e:
+            logger.warning(f"Missing prebuild for '{tool}', skipping")
+            retcode = 0
+        except Exception as e:
+            logger.error(str(e))
+            retcode = -1
+
+        exit(retcode)
 
     if args.install_all:
         logger.debug(f"Collecting tool data...")
