@@ -50,14 +50,14 @@ jobs:
     - name: Test commands
       if: matrix.os == 'windows-latest'
       run: |
-        cp ~/PowershellAliases.ps1 ~/bin/
+        cp -Force ~/PowershellAliases.ps1 ~/bin/
         hexdump c:\windows\system32\ntdll.dll
         cat c:\windows\win.ini
 
     - name: Test commands
       if: matrix.os != 'windows-latest'
       run: |
-        cp ~/.alias ~/bin/
+        cp -f ~/.alias ~/bin/
         hexdump /bin/ls
         cat /etc/passwd
 
