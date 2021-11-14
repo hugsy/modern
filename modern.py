@@ -183,11 +183,18 @@ def download_latest_release(tool: dict) -> pathlib.Path:
 
     ## if archive, extract it
     logger.debug(f"Checking '{fname}' for archive formats...")
-    if magic.from_file(str(fname.absolute()), mime=True) == "application/zip":
-        extract_dir = (tmpdir / "extracted").absolute()
-        logger.debug(f"Extracting '{fname.absolute()}' to '{extract_dir}'")
+    mime_type = magic.from_file(str(fname.absolute()), mime=True)
+    extract_dir = (tmpdir / "extracted").absolute()
+    if mime_type == "application/zip":
+        logger.debug(f"Extracting zip '{fname.absolute()}' to '{extract_dir}'")
         with zipfile.ZipFile(fname.absolute(), 'r') as zfd:
             zfd.extractall(str(extract_dir))
+    elif mime_type == "application/gzip" and fname.name.endswith(".tar.gz"):
+        logger.debug(f"Extracting tar.gz '{fname.absolute()}' to '{extract_dir}'")
+        os.makedirs(str(extract_dir), exist_ok=True)
+        os.system(f"tar -xzf {fname.absolute()} -C {extract_dir}")
+    else:
+        logger.info(f"No archive format found for '{fname.absolute()}'")
 
     # check if binary has expected mime type for the current OS (PE, ELF, Mach-O)
     file_pattern = tool.get('modern-tool-bin', None) or tool.get('modern-tool')
