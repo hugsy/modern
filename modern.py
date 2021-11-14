@@ -31,7 +31,7 @@ DEFAULT_SCRIPT_DIR  = DEFAULT_SCRIPT_NAME.parent
 DEFAULT_OUTPUT_FILE = "./README.md"
 GIST_ROOT_URL       = "https://gist.githubusercontent.com/hugsy/b950d6c98596c02cc129ead22dfb648c"
 GIST_URL            = f"{GIST_ROOT_URL}/raw/487c78174b38a595c7e39a22a9a9a58e9690be77/info.json"
-GITHUB_API          = "https://api.github.com"
+GITHUB_API_URL      = "https://api.github.com"
 DEBUG               = False
 HOME                = pathlib.Path( os.path.expanduser("~") )
 
@@ -145,7 +145,7 @@ def download_latest_release(tool: dict) -> pathlib.Path:
     gh_tool_author, gh_tool_name = tool["url"].replace("https://github.com/", "").split("/")
 
     # download the data
-    release_js = download_json_data(f"{GITHUB_API}/repos/{gh_tool_author}/{gh_tool_name}/releases")
+    release_js = download_json_data(f"{GITHUB_API_URL}/repos/{gh_tool_author}/{gh_tool_name}/releases")
 
     # find the right asset in the latest release
     latest_release = release_js[0]
@@ -249,14 +249,19 @@ def install(tool: dict, is_dry_run: bool = False) -> int:
         install_path = output_directory.absolute() / tool_name
         line_to_add = f"alias {tool['unix-tool']}='{install_path}' # added by {DEFAULT_SCRIPT_NAME.name}"
 
+    alias_already_exists = False
+    if alias_file.exists():
+        if line_to_add not in [line.strip() for line in open(str(alias_file.absolute()), "r").readlines()]:
+            alias_already_exists = True
+            logger.info(f"Alias for '{tool['unix-tool']}' already in `{alias_file}`")
+
     logger.debug(f"Adding `{line_to_add}` in '{alias_file.absolute()}'")
-    if line_to_add not in [line.strip() for line in open(str(alias_file.absolute()), "r").readlines()]:
-        if not is_dry_run:
-            with open(str(alias_file.absolute()), "a") as f:
-                f.write(f"{line_to_add} {os.linesep}")
+    if not is_dry_run and alias_already_exists:
+        with open(str(alias_file.absolute()), "a") as f:
+            f.write(f"{line_to_add} {os.linesep}")
+
         logger.info(f"Alias '{tool['unix-tool']}' -> '{tool_name}' added to `{alias_file}`")
-    else:
-        logger.info(f"Alias for '{tool['unix-tool']}' already in `{alias_file}`")
+
     return 0
 
 
