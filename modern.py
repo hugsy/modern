@@ -106,13 +106,14 @@ def create_table(output_file: str = DEFAULT_OUTPUT_FILE):
 
         for tool in js:
             is_windows_compatible = "✔" if tool["windows-compatible"] else "❌"
+            is_preferred = "⭐" if tool["preferred"] else ""
             prebuild_list = []
             for o in tool["prebuild"]:
                 if o == "win": prebuild_list.append(win_logo())
                 if o == "lin": prebuild_list.append(lin_logo())
                 if o == "mac": prebuild_list.append(mac_logo())
 
-            f.write(f'| `{tool["unix-tool"]}` | [`{tool["modern-tool"]}`]({tool["url"]}) | {is_windows_compatible} | {" ".join(prebuild_list)} |\n')
+            f.write(f'| `{tool["unix-tool"]}` {is_preferred} | [`{tool["modern-tool"]}`]({tool["url"]}) | {is_windows_compatible} | {" ".join(prebuild_list)} |\n')
     return
 
 

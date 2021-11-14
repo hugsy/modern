@@ -2,6 +2,7 @@
     {
         "unix-tool": "cat",
         "modern-tool": "bat",
+        "preferred": false,
         "url": "https://github.com/sharkdp/bat",
         "windows-compatible": true,
         "prebuild": [
@@ -14,6 +15,7 @@
     {
         "unix-tool": "cd",
         "modern-tool": "zoxide",
+        "preferred": false,
         "url": "https://github.com/ajeetdsouza/zoxide",
         "windows-compatible": true,
         "prebuild": [
@@ -26,6 +28,7 @@
     {
         "unix-tool": "cloc",
         "modern-tool": "tokei",
+        "preferred": false,
         "url": "https://github.com/XAMPPRocky/tokei",
         "windows-compatible": true,
         "prebuild": [
@@ -38,6 +41,7 @@
     {
         "unix-tool": "curl",
         "modern-tool": "xh",
+        "preferred": false,
         "url": "https://github.com/ducaale/xh",
         "windows-compatible": true,
         "prebuild": [
@@ -50,6 +54,7 @@
     {
         "unix-tool": "diff",
         "modern-tool": "delta",
+        "preferred": false,
         "url": "https://github.com/dandavison/delta",
         "windows-compatible": true,
         "prebuild": [
@@ -62,6 +67,7 @@
     {
         "unix-tool": "dig",
         "modern-tool": "dog",
+        "preferred": false,
         "url": "https://github.com/ogham/dog",
         "windows-compatible": true,
         "prebuild": [
@@ -74,6 +80,7 @@
     {
         "unix-tool": "find",
         "modern-tool": "fd",
+        "preferred": false,
         "url": "https://github.com/sharkdp/fd",
         "windows-compatible": true,
         "prebuild": [
@@ -86,6 +93,7 @@
     {
         "unix-tool": "git",
         "modern-tool": "gitoxide",
+        "preferred": false,
         "url": "https://github.com/Byron/gitoxide",
         "windows-compatible": true,
         "prebuild": [
@@ -95,6 +103,7 @@
     {
         "unix-tool": "grep",
         "modern-tool": "ripgrep",
+        "preferred": false,
         "modern-tool-bin": "rg",
         "url": "https://github.com/BurntSushi/ripgrep",
         "windows-compatible": true,
@@ -108,6 +117,7 @@
     {
         "unix-tool": "hexdump",
         "modern-tool": "hex",
+        "preferred": false,
         "url": "https://github.com/sitkevij/hex",
         "windows-compatible": true,
         "prebuild": [
@@ -118,6 +128,7 @@
     {
         "unix-tool": "hexdump",
         "modern-tool": "hexyl",
+        "preferred": true,
         "url": "https://github.com/sharkdp/hexyl",
         "windows-compatible": true,
         "prebuild": [
@@ -130,6 +141,7 @@
     {
         "unix-tool": "jq",
         "modern-tool": "jql",
+        "preferred": false,
         "url": "https://github.com/yamafaktory/jql",
         "windows-compatible": true,
         "prebuild": [
@@ -139,6 +151,7 @@
     {
         "unix-tool": "ls",
         "modern-tool": "exa",
+        "preferred": false,
         "url": "https://github.com/ogham/exa",
         "windows-compatible": false,
         "prebuild": [
@@ -150,6 +163,7 @@
     {
         "unix-tool": "ls",
         "modern-tool": "lsd",
+        "preferred": true,
         "url": "https://github.com/Peltoche/lsd",
         "windows-compatible": true,
         "prebuild": [
@@ -162,6 +176,7 @@
     {
         "unix-tool": "nano",
         "modern-tool": "lino",
+        "preferred": true,
         "url": "https://github.com/ahmednooor/lino",
         "windows-compatible": true,
         "prebuild": []
@@ -170,6 +185,7 @@
     {
         "unix-tool": "nano",
         "modern-tool": "ox",
+        "preferred": false,
         "url": "https://github.com/curlpipe/ox",
         "windows-compatible": false,
         "prebuild": [
@@ -180,6 +196,7 @@
     {
         "unix-tool": "ps",
         "modern-tool": "procs",
+        "preferred": false,
         "url": "https://github.com/dalance/procs",
         "windows-compatible": true,
         "prebuild": [
@@ -192,6 +209,7 @@
     {
         "unix-tool": "sed",
         "modern-tool": "sd",
+        "preferred": false,
         "url": "https://github.com/chmln/sd",
         "windows-compatible": false,
         "prebuild": [
@@ -203,6 +221,7 @@
     {
         "unix-tool": "spotify",
         "modern-tool": "psst",
+        "preferred": false,
         "url": "https://github.com/jpochyla/psst",
         "windows-compatible": true,
         "prebuild": [
@@ -212,6 +231,7 @@
     {
         "unix-tool": "time",
         "modern-tool": "hyperfine",
+        "preferred": false,
         "url": "https://github.com/sharkdp/hyperfine",
         "windows-compatible": true,
         "prebuild": [
@@ -224,6 +244,7 @@
     {
         "unix-tool": "top",
         "modern-tool": "bottom",
+        "preferred": false,
         "modern-tool-bin": "btm",
         "url": "https://github.com/ClementTsang/bottom",
         "windows-compatible": true,
@@ -237,6 +258,7 @@
     {
         "unix-tool": "tree",
         "modern-tool": "broot",
+        "preferred": false,
         "url": "https://github.com/Canop/broot",
         "windows-compatible": true,
         "prebuild": [
@@ -246,6 +268,7 @@
     {
         "unix-tool": "objdump",
         "modern-tool": "bingrep",
+        "preferred": false,
         "url": "https://github.com/m4b/bingrep",
         "windows-compatible": true,
         "prebuild": [
@@ -255,6 +278,7 @@
     {
         "unix-tool": "vim",
         "modern-tool": "helix",
+        "preferred": false,
         "modern-tool-bin": "hx",
         "url": "https://github.com/helix-editor/helix",
         "windows-compatible": true,
@@ -268,6 +292,7 @@
     {
         "unix-tool": "vim",
         "modern-tool": "neovide",
+        "preferred": true,
         "url": "https://github.com/neovide/neovide",
         "windows-compatible": true,
         "prebuild": [
@@ -277,6 +302,7 @@
     {
         "unix-tool": "wc",
         "modern-tool": "cw",
+        "preferred": false,
         "url": "https://github.com/Freaky/cw",
         "windows-compatible": true,
         "prebuild": [
