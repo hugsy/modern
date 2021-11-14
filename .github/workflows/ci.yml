@@ -51,13 +51,15 @@ jobs:
       if: matrix.os == 'windows-latest'
       run: |
         cp -Force ~/PowershellAliases.ps1 ~/bin/
+        try{ . ~/PowershellAliases.ps1 } catch {}
         hexdump c:\windows\system32\ntdll.dll
         cat c:\windows\win.ini
 
     - name: Test commands
       if: matrix.os != 'windows-latest'
       run: |
-        cp -f ~/.alias ~/bin/
+        cp -f ~/.aliases ~/bin/
+        source ~/.aliases
         hexdump /bin/ls
         cat /etc/passwd
 
