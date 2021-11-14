@@ -196,7 +196,7 @@ def download_latest_release(tool: dict) -> pathlib.Path:
         os.makedirs(str(extract_dir), exist_ok=True)
         os.system(f"tar -vxzf {fname.absolute()} -C {extract_dir}")
     else:
-        logger.info(f"No archive format found for '{fname.absolute()}'")
+        logger.info(f"No archive format found for '{fname.absolute()}' ({mime_type=})")
 
     # check if binary has expected mime type for the current OS (PE, ELF, Mach-O)
     file_pattern = tool.get('modern-tool-bin', None) or tool.get('modern-tool')
