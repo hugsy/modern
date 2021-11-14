@@ -194,7 +194,7 @@ def download_latest_release(tool: dict) -> pathlib.Path:
     elif mime_type == "application/gzip" and fname.name.endswith(".tar.gz"):
         logger.debug(f"Extracting tar.gz '{fname.absolute()}' to '{extract_dir}'")
         os.makedirs(str(extract_dir), exist_ok=True)
-        os.system(f"tar -xzf {fname.absolute()} -C {extract_dir}")
+        os.system(f"tar -vxzf {fname.absolute()} -C {extract_dir}")
     else:
         logger.info(f"No archive format found for '{fname.absolute()}'")
 
