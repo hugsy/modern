@@ -251,7 +251,7 @@ def install(tool: dict, is_dry_run: bool = False) -> int:
 
     alias_already_exists = False
     if alias_file.exists():
-        if line_to_add not in [line.strip() for line in open(str(alias_file.absolute()), "r").readlines()]:
+        if line_to_add in [line.strip() for line in open(str(alias_file.absolute()), "r").readlines()]:
             alias_already_exists = True
             logger.info(f"Alias for '{tool['unix-tool']}' already in `{alias_file}`")
 
