@@ -11,6 +11,7 @@ TODO:
  - use rich
 """
 import argparse
+import functools
 import json
 import logging
 import os
@@ -60,6 +61,7 @@ def download_json_data(url: str) -> list[dict]:
     return h.json()
 
 
+@functools.lru_cache(maxsize=None)
 def collect_json_data() -> list[dict]:
     info_json = DEFAULT_SCRIPT_DIR / "info.json"
     # if local
@@ -68,7 +70,7 @@ def collect_json_data() -> list[dict]:
     # otherwise grab online
     return download_json_data(GIST_URL)
 
-
+@functools.lru_cache(maxsize=None)
 def lookup_tool_by_name(name: str, is_unix_tool : bool, is_modern_tool : bool) -> list[dict]:
     logger.debug(f"Searching for {'unix' if is_unix_tool else 'rust'} tool '{name}'")
     js = collect_json_data()
@@ -335,13 +337,15 @@ if __name__ == "__main__":
         logger.info(f"Collected {len(js)} tools...")
         retcode = 0
         for entry in js:
-            # TODO: use threads
+            # is there multiple unix tools for this rust tool?
+            res = lookup_unix_tool_by_name(entry["unix-tool"])
+            if len(res) != 1 and not entry["preferred"]:
+                logger.warning("Found multiple matches, skipping for preferred...")
+                continue
+
+            # if here, either 1 match for unix tool or it is the preferred
             res = lookup_rust_tool_by_name(entry["modern-tool"])
-            if len(res) != 1:
-                logger.warning("Found multiple matches, grabbing preferred...")
-                tool = filter(lambda x: x['preferred'] == True, res)[0]
-            else:
-                tool = res[0]
+            tool = res[0]
 
             try:
                 if install(tool, args.dry_run) != 0:
