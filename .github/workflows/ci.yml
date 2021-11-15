@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: ['windows-latest'] # 'ubuntu-latest', 'macos-latest']
+        os: ['windows-latest', 'ubuntu-latest', 'macos-latest']
         platform: ['x64']
         python-version: ['3.9']
 
@@ -29,23 +29,43 @@ jobs:
     - name: Inject slug/short variables
       uses: rlespinasse/github-slug-action@v3.x
 
-    - name: Initialize environment
+    - name: Initialize environment - Common
       run: |
         python3 -m pip install --user --upgrade pip
         python3 -m pip install --user --upgrade -r requirements.txt
         mkdir ~/bin
         cd ~
 
-    - name: Execute tests
+    - name: Initialize environment - Linux
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        sudo apt-get install libmagic1
+
+    - name: Initialize environment - MacOS
+      if: matrix.os == 'macos-latest'
+      run: |
+        brew install libmagic
+
+    - name: Run tests - Common
       run: |
         python3 modern.py -v --search-unix ls
-        python3 modern.py -v --search-rust exa
+        python3 modern.py -v --search-rust lsd
         python3 modern.py -v --install ripgrep --dry-run
         python3 modern.py -v --install ripgrep
-        python3 modern.py -v --install hexyl
-        python3 modern.py -v --install bat
         python3 modern.py -v --install-all --dry-run
         python3 modern.py -v --install-all
+
+    - name: Run tests - Linux
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        python3 modern.py -v --search-rust exa
+        python3 modern.py -v --install exa
+        python3 modern.py -v --install ox
+
+    - name: Run tests - MacOS
+      if: matrix.os == 'macos-latest'
+      run: |
+        python3 modern.py -v --install exa
 
     - name: Test commands - Windows
       if: matrix.os == 'windows-latest'
@@ -64,7 +84,6 @@ jobs:
         cat /etc/passwd
 
     - name: Publish artifact
-      id: publish_artifact
       uses: actions/upload-artifact@v2
       with:
         name: modern_cmdline_${{ matrix.os }}_${{ matrix.platform }}_${{ env.GITHUB_SHA_SHORT }}

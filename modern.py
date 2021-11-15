@@ -11,6 +11,7 @@ TODO:
  - use rich
 """
 import argparse
+import functools
 import json
 import logging
 import os
@@ -60,6 +61,7 @@ def download_json_data(url: str) -> list[dict]:
     return h.json()
 
 
+@functools.lru_cache(maxsize=None)
 def collect_json_data() -> list[dict]:
     info_json = DEFAULT_SCRIPT_DIR / "info.json"
     # if local
@@ -68,7 +70,7 @@ def collect_json_data() -> list[dict]:
     # otherwise grab online
     return download_json_data(GIST_URL)
 
-
+@functools.lru_cache(maxsize=None)
 def lookup_tool_by_name(name: str, is_unix_tool : bool, is_modern_tool : bool) -> list[dict]:
     logger.debug(f"Searching for {'unix' if is_unix_tool else 'rust'} tool '{name}'")
     js = collect_json_data()
@@ -141,12 +143,15 @@ def download_latest_release(tool: dict) -> pathlib.Path:
     if (__os == "windows" and "win" not in tool["prebuild"]) \
         or (__os == "linux" and "lin" not in tool["prebuild"]) \
         or (__os == "macos" and "mac" not in tool["prebuild"]):
-            raise MissingPrebuildException(f"Tool {tool['unix-tool']} is not available for {__os}")
+            raise MissingPrebuildException(f"Tool '{tool['unix-tool']}' is not available for {__os}")
 
     gh_tool_author, gh_tool_name = tool["url"].replace("https://github.com/", "").split("/")
 
     # download the data
     release_js = download_json_data(f"{GITHUB_API_URL}/repos/{gh_tool_author}/{gh_tool_name}/releases")
+
+    if len(release_js) < 1:
+        raise MissingPrebuildException(f"Missing release for '{tool['unix-tool']}' on {__os} {__arch} ")
 
     # find the right asset in the latest release
     latest_release = release_js[0]
@@ -172,7 +177,7 @@ def download_latest_release(tool: dict) -> pathlib.Path:
         if match: break
 
     if not match:
-        raise Exception(f"No asset found for {__os} {__arch}")
+        raise MissingPrebuildException(f"No asset found for '{gh_tool_name}' on {__os} {__arch}")
 
     # download the asset in tempdir
     h = requests.get(match["browser_download_url"])
@@ -183,11 +188,18 @@ def download_latest_release(tool: dict) -> pathlib.Path:
 
     ## if archive, extract it
     logger.debug(f"Checking '{fname}' for archive formats...")
-    if magic.from_file(str(fname.absolute()), mime=True) == "application/zip":
-        extract_dir = (tmpdir / "extracted").absolute()
-        logger.debug(f"Extracting '{fname.absolute()}' to '{extract_dir}'")
+    mime_type = magic.from_file(str(fname.absolute()), mime=True)
+    extract_dir = (tmpdir / "extracted").absolute()
+    if mime_type == "application/zip":
+        logger.debug(f"Extracting zip '{fname.absolute()}' to '{extract_dir}'")
         with zipfile.ZipFile(fname.absolute(), 'r') as zfd:
             zfd.extractall(str(extract_dir))
+    elif mime_type == "application/gzip" and fname.name.endswith(".tar.gz"):
+        logger.debug(f"Extracting tar.gz '{fname.absolute()}' to '{extract_dir}'")
+        os.makedirs(str(extract_dir), exist_ok=True)
+        os.system(f"tar -vxzf {fname.absolute()} -C {extract_dir}")
+    else:
+        logger.info(f"No archive format found for '{fname.absolute()}' ({mime_type=})")
 
     # check if binary has expected mime type for the current OS (PE, ELF, Mach-O)
     file_pattern = tool.get('modern-tool-bin', None) or tool.get('modern-tool')
@@ -320,7 +332,17 @@ if __name__ == "__main__":
             exit(1)
 
         tool = res[0]
-        exit(install(tool, args.dry_run))
+
+        try:
+            retcode = install(tool, args.dry_run)
+        except MissingPrebuildException as e:
+            logger.warning(f"Missing prebuild for '{tool}', skipping")
+            retcode = 0
+        except Exception as e:
+            logger.error(str(e))
+            retcode = -1
+
+        exit(retcode)
 
     if args.install_all:
         logger.debug(f"Collecting tool data...")
@@ -328,12 +350,14 @@ if __name__ == "__main__":
         logger.info(f"Collected {len(js)} tools...")
         retcode = 0
         for entry in js:
-            # TODO: use threads
-            res = lookup_rust_tool_by_name(entry["modern-tool"])
-            if len(res) != 1:
-                logger.warning("Found multiple matches, cannot proceed")
+            # is there multiple unix tools for this rust tool?
+            res = lookup_unix_tool_by_name(entry["unix-tool"])
+            if len(res) != 1 and not entry["preferred"]:
+                logger.warning("Found multiple matches, skipping for preferred...")
                 continue
 
+            # if here, either 1 match for unix tool or it is the preferred
+            res = lookup_rust_tool_by_name(entry["modern-tool"])
             tool = res[0]
 
             try:
@@ -341,7 +365,7 @@ if __name__ == "__main__":
                     logger.error(f"Error installing tool '{tool}'")
                     retcode += 1
             except MissingPrebuildException as e:
-                logger.warning(f"Missing prebuild for '{tool}'")
+                logger.warning(f"Missing prebuild for '{tool}', skipping")
 
         logger.debug(f"Done, exiting with code {retcode}")
         exit(retcode)
