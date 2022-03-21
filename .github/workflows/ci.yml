@@ -34,12 +34,12 @@ jobs:
       uses: rlespinasse/github-slug-action@v3.x
 
     - name: Force delay to avoid GH limit rate (osx)
-      if: ${{ matrix.os == "macos-latest" }}
+      if: ${{ matrix.os }} == "macos-latest" 
       run: |
         sleep 7200
 
     - name: Force delay to avoid GH limit rate (linux)
-      if: ${{ matrix.os == "ubuntu-latest" }}
+      if: ${{ matrix.os }} == "ubuntu-latest" 
       run: |
         sleep 3600
     
