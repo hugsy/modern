@@ -7,8 +7,8 @@ env:
 on:  
   push:
   pull_request:
-  schedule:
-    - cron: '0 0 * * *'  # every day at midnight
+#  schedule:
+#    - cron: '0 0 * * *'  # every day at midnight
 
 jobs:
   ci_tests:
