@@ -304,5 +304,18 @@
         "windows-compatible": true,
         "prebuild": [
         ]
-    }
+    },
+    
+    {
+        "unix-tool": "du",
+        "modern-tool": "dust",
+        "preferred": true,
+        "url": "https://github.com/bootandy/dust",
+        "windows-compatible": true,
+        "prebuild": [
+            "win",
+            "lin",
+            "mac"            
+        ]
+    }    
 ]
