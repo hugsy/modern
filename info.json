@@ -317,5 +317,16 @@
             "lin",
             "mac"            
         ]
-    }    
+    },
+    {
+        "unix-tool": "nc",
+        "modern-tool": "rustcat",
+        "preferred": true,
+        "url": "https://github.com/robiot/rustcat",
+        "windows-compatible": true,
+        "prebuild": [
+            "win",
+            "lin"
+        ]
+    }
 ]
